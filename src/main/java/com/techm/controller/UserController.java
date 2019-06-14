@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techm.model.Users;
 import com.techm.repo.UserRepository;
+import com.techm.services.IUserService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -27,11 +28,15 @@ public class UserController {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private IUserService service;
 
 	@GetMapping("/validate/{email}/{password}")
 	public Users validateByEmail(@PathVariable("email") String email, @PathVariable("password") String password) {
 		System.out.println("Validating user by email...");
-		Users userData = repository.findByEmail(email, password);
+		//Users userData = repository.findByEmail(email, password);
+		Users userData = service.findByEmail(email, password);
 		System.out.println(userData);
 		return userData;
 	}

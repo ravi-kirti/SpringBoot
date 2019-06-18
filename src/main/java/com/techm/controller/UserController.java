@@ -90,7 +90,7 @@ public class UserController {
 			_user.setZipcode(user.getZipcode());
 			_user.setPhone(user.getPhone());
 			_user.setRollname(user.getRollname());
-
+			System.out.println("Saving user details");
 			return new ResponseEntity<>(repository.save(_user), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
